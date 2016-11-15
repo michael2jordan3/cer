@@ -57,3 +57,9 @@ test.equals(inspect(err1_1), err1_1.stack, 'inspection of an error should be equ
 test.equals(inspect(err1_2), err1_2.stack, 'inspection of an error should be equal to its stack')
 test.equals(inspect(err2_1), err2_1.stack, 'inspection of an error should be equal to its stack')
 test.equals(inspect(err2_2), err2_2.stack, 'inspection of an error should be equal to its stack')
+
+const copy = new MyError1('test1'),
+      rxp  = /^MyError1: test1\n.*at\s.*\(.*test\.js:[0-9]+:[0-9]+\)\n/
+      
+test.match(err1_1.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
+test.match(copy.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
