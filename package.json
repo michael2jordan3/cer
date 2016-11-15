@@ -1,7 +1,7 @@
 {
   "name": "cer",
   "version": "1.0.0",
-  "description": "create correct custom error constructors",
+  "description": "create fast and correct error constructors",
   "main": "index.js",
   "scripts": {
     "test": "tap test.js",
@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/schwarzkopfb/cer#readme",
   "devDependencies": {
+    "bench": "^0.3.6",
+    "custom-error": "^0.2.1",
     "tap": "^8.0.0"
   }
 }
