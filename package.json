@@ -1,0 +1,29 @@
+{
+  "name": "cer",
+  "version": "1.0.0",
+  "description": "create correct custom error constructors",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test.js",
+    "cover": "npm test -- --cov --coverage-report=lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schwarzkopfb/cer.git"
+  },
+  "keywords": [
+    "custom",
+    "errors",
+    "constructor",
+    "inherit"
+  ],
+  "author": "Schwarzkopf Balázs <schwarzkopfb@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schwarzkopfb/cer/issues"
+  },
+  "homepage": "https://github.com/schwarzkopfb/cer#readme",
+  "devDependencies": {
+    "tap": "^8.0.0"
+  }
+}
