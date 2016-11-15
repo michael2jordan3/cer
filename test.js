@@ -63,3 +63,17 @@ const copy = new MyError1('test1'),
 
 test.match(err1_1.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
 test.match(copy.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
+
+test.test('multiple inheritance', test => {
+    const Child1 = error('ChildError1', init, MyError1),
+          Child2 = error('ChildError2', null, MyError2),
+          ch1    = new Child1('test5', 'test'),
+          ch2    = new Child2('test6')
+
+    test.type(ch1, Error, 'child should be derived from Error')
+    test.type(ch2, Error, 'child should be derived from Error')
+    test.type(ch1, Child1, 'child should inherit from its parent')
+    test.type(ch2, Child2, 'child should inherit from its parent')
+
+    test.end()
+})

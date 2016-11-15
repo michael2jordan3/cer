@@ -2,14 +2,16 @@
 
 module.exports = createCustomError
 
-function createCustomError(name, init) {
+function createCustomError(name, init, parent) {
+    parent = parent || Error
+
     const ctor = function () {
         if (this instanceof ctor)
             var inst = this
         else
             inst = Object.create(ctor.prototype)
 
-        const err = Error.apply(inst, arguments)
+        const err = parent.apply(inst, arguments)
         Error.captureStackTrace(err, ctor)
 
         inst.name = err.name = name
@@ -17,7 +19,8 @@ function createCustomError(name, init) {
 
         // stack is not always relevant, and is expensive to generate
         Object.defineProperty(inst, 'stack', {
-            get: () => err.stack
+            get: () => err.stack,
+            configurable: true
         })
 
         if (init)
@@ -31,7 +34,7 @@ function createCustomError(name, init) {
         configurable: true
     })
 
-    ctor.prototype = Object.create(Error.prototype)
+    ctor.prototype = Object.create(parent.prototype)
     ctor.prototype.inspect = inspect
     ctor.prototype.constructor = ctor
 
