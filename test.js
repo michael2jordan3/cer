@@ -43,10 +43,10 @@ test.equals(err2_2.message, 'test4', 'error message should be set')
 test.equals(err2_1.extra, 'test', 'init function should be called')
 test.equals(err2_2.extra, 'test', 'init function should be called')
 
-test.match(err1_1.stack, /^MyError1: test1\n/, 'error stack trace should be correct')
-test.match(err1_2.stack, /^MyError1: test2\n/, 'error stack trace should be correct')
-test.match(err2_1.stack, /^MyError2: test3\n/, 'error stack trace should be correct')
-test.match(err2_2.stack, /^MyError2: test4\n/, 'error stack trace should be correct')
+test.match(err1_1.stack, /^(My)?Error1?: test1\n/, 'error stack trace should be correct')
+test.match(err1_2.stack, /^(My)?Error1?: test2\n/, 'error stack trace should be correct')
+test.match(err2_1.stack, /^(My)?Error2?: test3\n/, 'error stack trace should be correct')
+test.match(err2_2.stack, /^(My)?Error2?: test4\n/, 'error stack trace should be correct')
 
 test.equals(err1_1.toString(), 'MyError1: test1', 'string representation of the error should be correct')
 test.equals(err1_2.toString(), 'MyError1: test2', 'string representation of the error should be correct')
@@ -59,7 +59,7 @@ test.equals(inspect(err2_1), err2_1.stack, 'inspection of an error should be equ
 test.equals(inspect(err2_2), err2_2.stack, 'inspection of an error should be equal to its stack')
 
 const copy = new MyError1('test1'),
-      rxp  = /^MyError1: test1\n.*at\s.*\(.*test\.js:[0-9]+:[0-9]+\)\n/
-      
+      rxp  = /^(My)?Error1?: test1\n.*at\s.*\(.*test\.js:[0-9]+:[0-9]+\)\n/
+
 test.match(err1_1.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
 test.match(copy.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
