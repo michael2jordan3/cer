@@ -1,6 +1,7 @@
 'use strict'
 
-const inspect  = require('util').inspect,
+const AE       = require('assert').AssertionError,
+      inspect  = require('util').inspect,
       test     = require('tap'),
       error    = require('.'),
       MyError1 = error('MyError1'),
@@ -63,6 +64,26 @@ const copy = new MyError1('test1'),
 
 test.match(err1_1.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
 test.match(copy.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
+
+test.test('assertions', test => {
+    test.throws(() => {
+        error(true, init, Error)
+    }, AE, 'constructor name should be asserted')
+
+    test.throws(() => {
+        error('', init, Error)
+    }, AE, 'constructor name should be asserted')
+
+    test.throws(() => {
+        error('Invalid', true, MyError1)
+    }, AE, 'constructor type should be asserted')
+
+    test.throws(() => {
+        error('Invalid', null, init)
+    }, AE, 'prototype chain of parent should be asserted')
+
+    test.end()
+})
 
 test.test('multiple inheritance', test => {
     function init(message, val) {

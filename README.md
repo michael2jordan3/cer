@@ -7,4 +7,4 @@
 
 # cer
 
-create correct custom error constructors
+create fast and correct error constructors
