@@ -1,6 +1,6 @@
 {
   "name": "cer",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.0",
   "description": "create fast and correct error constructors",
   "main": "index.js",
   "scripts": {
