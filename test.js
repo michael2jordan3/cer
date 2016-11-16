@@ -65,6 +65,10 @@ test.match(err1_1.stack, rxp, 'stack traces should be the same regardless of the
 test.match(copy.stack, rxp, 'stack traces should be the same regardless of the use of `new` operator')
 
 test.test('multiple inheritance', test => {
+    function init(message, val) {
+        this.test = val
+    }
+
     const Child1 = error('ChildError1', init, MyError1),
           Child2 = error('ChildError2', null, MyError2),
           ch1    = new Child1('test5', 'test'),
@@ -72,8 +76,11 @@ test.test('multiple inheritance', test => {
 
     test.type(ch1, Error, 'child should be derived from Error')
     test.type(ch2, Error, 'child should be derived from Error')
-    test.type(ch1, Child1, 'child should inherit from its parent')
-    test.type(ch2, Child2, 'child should inherit from its parent')
+    test.type(ch1, MyError1, 'child should be derived from its parent')
+    test.type(ch2, MyError2, 'child should be derived from its parent')
+    test.type(ch1, Child1, 'child should be an instance of its constructor')
+    test.type(ch2, Child2, 'child should be an instance of its constructor')
+    test.equals(ch1.test, 'test', 'init function should be executed')
 
     test.end()
 })
