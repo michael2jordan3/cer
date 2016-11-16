@@ -16,7 +16,7 @@ function init(message, extra) {
 }
 
 test.type(MyError1, 'function', 'a constructor should be returned')
-test.type(MyError1, 'function', 'a constructor should be returned')
+test.type(MyError2, 'function', 'a constructor should be returned')
 
 test.equals(MyError1.name, 'MyError1', 'constructor name should be set')
 test.equals(MyError2.name, 'MyError2', 'constructor name should be set')
