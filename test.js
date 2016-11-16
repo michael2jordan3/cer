@@ -105,3 +105,15 @@ test.test('multiple inheritance', test => {
 
     test.end()
 })
+
+test.test('prototype', test => {
+    const MyError = error('MyError'),
+          Another = error('Another', null, MyError)
+    MyError.prototype.test1 = 42
+    Another.prototype.test2 = 69
+    const err = new Another
+
+    test.equals(err.test1, 42, 'instance should inherit its prototype properties')
+    test.equals(err.test2, 69, 'instance should inherit its prototype properties')
+    test.end()
+})
