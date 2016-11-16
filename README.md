@@ -8,6 +8,8 @@
 # cer
 
 Utility to generate fast and correct custom error constructors.
+This module exposes a factory function that creates error constructors which
+are identical to the built-in `Error` function.
 
 ## Basic usage
 
